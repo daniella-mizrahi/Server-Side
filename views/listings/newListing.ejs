@@ -1,0 +1,86 @@
+<%- include('../includes/head.ejs') %>
+
+<title>Roomies | פרסום דירה חדשה</title>
+<link rel="stylesheet" href="/css/new-listing.css">
+</head>
+<body>
+
+<%- include('../includes/menu.ejs') %>
+
+<main>
+  <section class="new-listing-page">
+    <header class="new-listing-page__header">
+      <h1>פרסום דירה חדשה</h1>
+      <p class="section-subtitle">מלאי את פרטי הדירה ומצאי שותפה מתאימה</p>
+    </header>
+
+    <% if (typeof successMsg !== 'undefined' && successMsg) { %>
+      <div class="alert success" style="padding:var(--sp-md);border-radius:var(--radius-md);margin-bottom:var(--sp-lg);font-weight:600;text-align:center;background:rgba(76,175,80,0.15);border:1px solid var(--clr-success);color:var(--clr-success);"><%= successMsg %></div>
+    <% } %>
+    <% if (typeof formError !== 'undefined' && formError) { %>
+      <div class="alert error" style="padding:var(--sp-md);border-radius:var(--radius-md);margin-bottom:var(--sp-lg);font-weight:600;text-align:center;background:rgba(255,82,82,0.12);border:1px solid var(--clr-error);color:var(--clr-error);"><%= formError %></div>
+    <% } %>
+
+    <article class="form-card">
+      <form action="/new-listing" method="POST" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="city">עיר <span class="required">*</span></label>
+            <input id="city" name="city" type="text" class="form-control" value="<%= typeof values !== 'undefined' ? values.city : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="address">כתובת <span class="required">*</span></label>
+            <input id="address" name="address" type="text" class="form-control" value="<%= typeof values !== 'undefined' ? values.address : '' %>" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="total_rent">שכירות חודשית (ש"ח) <span class="required">*</span></label>
+            <input id="total_rent" name="total_rent" type="number" class="form-control" min="1" max="20000" value="<%= typeof values !== 'undefined' ? values.total_rent : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="room_count">מספר חדרים <span class="required">*</span></label>
+            <input id="room_count" name="room_count" type="number" class="form-control" min="1" max="10" value="<%= typeof values !== 'undefined' ? values.room_count : '' %>" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="available_from">תאריך כניסה <span class="required">*</span></label>
+            <input id="available_from" name="available_from" type="date" class="form-control" value="<%= typeof values !== 'undefined' ? values.available_from : '' %>" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="roommate_gender_pref">העדפת שותפ/ה</label>
+            <select id="roommate_gender_pref" name="roommate_gender_pref" class="form-control">
+              <option value="any">לכולם</option>
+              <option value="female_only">בנות בלבד</option>
+              <option value="male_only">בנים בלבד</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="description">תיאור הדירה <span class="required">*</span></label>
+          <textarea id="description" name="description" class="form-control" rows="4" required><%= typeof values !== 'undefined' ? values.description : '' %></textarea>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:var(--sp-sm);margin-bottom:var(--sp-xl)">
+          <input id="pet_friendly" name="pet_friendly" type="checkbox" value="1" style="width:20px;height:20px;accent-color:var(--clr-primary);cursor:pointer;">
+          <label for="pet_friendly" style="font-weight:500;cursor:pointer;">ידידותי לחיות מחמד</label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--accent">פרסמי דירה</button>
+        </div>
+      </form>
+    </article>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2026 Roomies — כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>

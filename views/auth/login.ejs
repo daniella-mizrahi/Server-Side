@@ -1,0 +1,62 @@
+<%- include('../includes/head.ejs') %>
+
+<title>Roomies | התחברות</title>
+<link rel="stylesheet" href="/css/home.css">
+<style>
+  .auth-page { max-width: 480px; margin: var(--sp-3xl) auto; padding: 0 var(--sp-xl); }
+  .auth-card { background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-xl); padding: var(--sp-2xl); box-shadow: var(--shadow-md); }
+  .auth-header { text-align: center; margin-bottom: var(--sp-xl); }
+  .auth-title { font-size: var(--fs-2xl); margin-bottom: var(--sp-xs); }
+  .auth-subtitle { color: var(--clr-text-muted); }
+  .alert { padding: var(--sp-md); border-radius: var(--radius-md); margin-bottom: var(--sp-lg); font-weight: 600; text-align: center; }
+  .alert.error { background: rgba(255,82,82,0.12); border: 1px solid var(--clr-error); color: var(--clr-error); }
+  .alert.success { background: rgba(76,175,80,0.15); border: 1px solid var(--clr-success); color: var(--clr-success); }
+  .auth-footer { text-align: center; margin-top: var(--sp-lg); font-size: var(--fs-sm); }
+  .auth-footer a { color: var(--clr-primary-light); }
+</style>
+</head>
+<body>
+
+<%- include('../includes/menu.ejs') %>
+
+<main class="auth-page">
+  <section class="auth-card">
+    <div class="auth-header">
+      <h1 class="auth-title">התחברות</h1>
+      <p class="auth-subtitle">התחברי לחשבון שלך כדי לפרסם דירות ולשלוח בקשות</p>
+    </div>
+
+    <% if (typeof successMsg !== 'undefined' && successMsg) { %>
+      <div class="alert success"><%= successMsg %></div>
+    <% } %>
+
+    <% if (typeof formError !== 'undefined' && formError) { %>
+      <div class="alert error"><%= formError %></div>
+    <% } %>
+
+    <form action="/auth/login" method="POST" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="username">שם משתמש</label>
+        <input id="username" name="username" type="text" class="form-control" value="<%= typeof email !== 'undefined' ? email : '' %>" placeholder="שם המשתמש שלך" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">סיסמה</label>
+        <input id="password" name="password" type="password" class="form-control" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn btn--primary" style="width:100%">התחברי</button>
+
+      <div class="auth-footer">
+        <p>אין לך חשבון? <a href="/auth/register">הירשמי כאן</a></p>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2026 Roomies — כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>

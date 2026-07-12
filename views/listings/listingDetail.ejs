@@ -1,0 +1,123 @@
+<%- include('../includes/head.ejs') %>
+
+<title>Roomies | <%= listing.city %> — <%= listing.address %></title>
+<link rel="stylesheet" href="/css/listings.css">
+<link rel="stylesheet" href="/css/requests.css">
+</head>
+<body>
+
+<%- include('../includes/menu.ejs') %>
+
+<main>
+  <section class="detail-page">
+    <a href="/listings" class="back-link">← חזרה ללוח הדירות</a>
+
+    <article class="detail-content">
+      <div class="detail-grid">
+        <div class="detail-info">
+          <h1><%= listing.city %></h1>
+          <p class="detail-address"><%= listing.address %></p>
+
+          <div class="detail-badges">
+            <span class="badge"><%= listing.room_count %> חדרים</span>
+            <span class="badge"><%= listing.roommate_gender_pref === 'female_only' ? 'בנות בלבד' : listing.roommate_gender_pref === 'male_only' ? 'בנים בלבד' : 'לכולם' %></span>
+            <% if (listing.pet_friendly) { %>
+              <span class="badge badge--accent">ידידותי לחיות</span>
+            <% } %>
+          </div>
+
+          <h2>תיאור הדירה</h2>
+          <p class="detail-desc"><%= listing.description %></p>
+
+          <p class="detail-meta">פורסם ע"י: <strong><%= listing.posted_by_username %></strong></p>
+          <p class="detail-meta">תאריך כניסה: <strong><%= new Date(listing.available_from).toLocaleDateString('he-IL') %></strong></p>
+        </div>
+
+        <aside class="price-card">
+          <p class="price-card__label">שכירות חודשית</p>
+          <p class="price-card__amount">₪<%= Number(listing.total_rent).toLocaleString() %></p>
+          <p class="price-card__per">לחודש (כולל ארנונה ושותפות)</p>
+        </aside>
+      </div>
+    </article>
+
+    <% if (typeof requests !== 'undefined' && requests && requests.length > 0) { %>
+      <section class="requests-section">
+        <h2>בקשות שותפות לדירה זו (<%= requests.length %>)</h2>
+        <div class="requests-list">
+          <% requests.forEach(function(req) { %>
+            <article class="request-card">
+              <p><strong><%= req.applicant_username %></strong> — <%= req.occupation %></p>
+              <p><%= req.message %></p>
+              <p class="request-meta">
+                תקציב: ₪<%= Number(req.monthly_budget).toLocaleString() %> |
+                כניסה: <%= new Date(req.move_in_date).toLocaleDateString('he-IL') %> |
+                סטטוס: <span class="status-<%= req.status %>"><%= req.status === 'pending' ? 'ממתינה' : req.status === 'approved' ? 'אושרה' : 'נדחתה' %></span>
+              </p>
+            </article>
+          <% }); %>
+        </div>
+      </section>
+    <% } %>
+
+    <!-- Request Form (logged-in users only) -->
+    <% if (typeof user !== 'undefined' && user) { %>
+      <section class="request-form-section">
+        <h2>שלחי בקשת שותפות</h2>
+        <p class="section-subtitle">מעוניינת בדירה? מלאי את הפרטים ושלחי בקשה</p>
+
+        <article class="request-form-card">
+          <form action="/listings/<%= listing.listing_id %>/request" method="POST" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="occupation">תעסוקה <span class="required">*</span></label>
+                <input id="occupation" name="occupation" type="text" class="form-control" placeholder="סטודנטית, עובדת..." required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="monthly_budget">תקציב חודשי (ש"ח) <span class="required">*</span></label>
+                <input id="monthly_budget" name="monthly_budget" type="number" class="form-control" min="500" max="15000" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="move_in_date">תאריך כניסה מבוקש <span class="required">*</span></label>
+                <input id="move_in_date" name="move_in_date" type="date" class="form-control" required>
+              </div>
+              <div class="form-group" style="display:flex;align-items:center;gap:var(--sp-lg);padding-top:var(--sp-xl)">
+                <label style="display:flex;align-items:center;gap:var(--sp-xs);cursor:pointer;">
+                  <input name="has_pets" type="checkbox" value="1" style="width:18px;height:18px;accent-color:var(--clr-primary);">
+                  יש לי חיות מחמד
+                </label>
+                <label style="display:flex;align-items:center;gap:var(--sp-xs);cursor:pointer;">
+                  <input name="is_smoker" type="checkbox" value="1" style="width:18px;height:18px;accent-color:var(--clr-primary);">
+                  מעשנ/ת
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">הודעה אישית <span class="required">*</span></label>
+              <textarea id="message" name="message" class="form-control" rows="4" placeholder="ספרי קצת על עצמך ולמה את מחפשת שותפות..." required maxlength="500"></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--accent">שלחי בקשה</button>
+            </div>
+          </form>
+        </article>
+      </section>
+    <% } else { %>
+      <div style="text-align:center;padding:var(--sp-xl);margin-top:var(--sp-xl);background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-lg);">
+        <p style="color:var(--clr-text-muted);">רוצה לשלוח בקשת שותפות? <a href="/auth/login" style="color:var(--clr-primary-light);">התחברי</a> קודם.</p>
+      </div>
+    <% } %>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2026 Roomies — כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>

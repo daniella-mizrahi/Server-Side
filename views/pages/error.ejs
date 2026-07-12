@@ -1,0 +1,21 @@
+<%- include('../includes/head.ejs') %>
+
+<title>Roomies | שגיאה</title>
+</head>
+<body>
+
+<%- include('../includes/menu.ejs') %>
+
+<main style="max-width:600px;margin:var(--sp-3xl) auto;text-align:center;padding:var(--sp-xl);">
+  <h1 style="font-size:var(--fs-3xl);margin-bottom:var(--sp-md);">😕</h1>
+  <h2><%= typeof pageTitle !== 'undefined' ? pageTitle : 'שגיאה' %></h2>
+  <p style="color:var(--clr-text-muted);margin:var(--sp-lg) 0;">העמוד שחיפשת לא נמצא או שאירעה שגיאה.</p>
+  <a href="/" class="btn btn--primary">חזרה לדף הבית</a>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2026 Roomies — כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>

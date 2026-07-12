@@ -1,0 +1,24 @@
+<header class="site-header" role="banner">
+  <div class="site-header__brand">
+    <img src="/Images/logo.png" alt="Roomies Logo" class="site-header__logo-img">
+    <span class="site-header__logo-text">Roomies</span>
+  </div>
+  <nav aria-label="ניווט ראשי">
+    <ul class="site-nav__list">
+      <li><a href="/" class="site-nav__link">דף הבית</a></li>
+      <li><a href="/listings" class="site-nav__link">לוח דירות</a></li>
+      <li><a href="/new-listing" class="site-nav__link site-nav__link--cta">+ פרסם דירה</a></li>
+      <li><a href="/requests" class="site-nav__link">הבקשות שלי</a></li>
+      <% if (typeof user !== 'undefined' && user) { %>
+        <li><span class="site-nav__link site-nav__user">שלום, <%= user.username %></span></li>
+        <li>
+          <form action="/auth/logout" method="POST" style="display:inline">
+            <button type="submit" class="site-nav__link site-nav__link--logout">התנתקות</button>
+          </form>
+        </li>
+      <% } else { %>
+        <li><a href="/auth/login" class="site-nav__link">התחברות</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

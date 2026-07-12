@@ -1,0 +1,66 @@
+<%- include('../includes/head.ejs') %>
+
+<title>Roomies | הבקשות שלי</title>
+<link rel="stylesheet" href="/css/requests.css">
+</head>
+<body>
+
+<%- include('../includes/menu.ejs') %>
+
+<main>
+  <section class="requests-page">
+    <header class="requests-page__header">
+      <h1>הבקשות שלי</h1>
+      <p class="section-subtitle">כל הבקשות ששלחת לדירות</p>
+    </header>
+
+    <% if (typeof flash !== 'undefined' && flash) { %>
+      <div class="alert success"><%= flash %></div>
+    <% } %>
+
+    <% if (requests && requests.length > 0) { %>
+      <div class="requests-grid">
+        <% requests.forEach(function(r) { %>
+          <article class="request-card">
+            <header class="request-card__header">
+              <h3 class="request-card__city"><%= r.listing_city %></h3>
+              <p class="request-card__address"><%= r.listing_address %></p>
+              <span class="request-card__status status-<%= r.status %>">
+                <%= r.status === 'pending' ? 'ממתינה' : r.status === 'approved' ? 'אושרה' : 'נדחתה' %>
+              </span>
+            </header>
+
+            <div class="request-card__body">
+              <p class="request-card__message"><%= r.message %></p>
+              <div class="request-card__details">
+                <span class="badge">תקציב: ₪<%= Number(r.monthly_budget).toLocaleString() %></span>
+                <span class="badge">כניסה: <%= new Date(r.move_in_date).toLocaleDateString('he-IL') %></span>
+                <span class="badge"><%= r.occupation %></span>
+                <% if (r.has_pets) { %><span class="badge badge--accent">יש חיות מחמד</span><% } %>
+                <% if (r.is_smoker) { %><span class="badge badge--accent">מעשנ/ת</span><% } %>
+              </div>
+            </div>
+
+            <footer class="request-card__footer">
+              <span class="request-card__date">נשלחה: <%= new Date(r.created_at).toLocaleDateString('he-IL') %></span>
+              <a href="/listings/<%= r.listing_id_ref %>" class="request-card__link">צפי בדירה</a>
+            </footer>
+          </article>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <div class="empty-state">
+        <p class="empty-state__icon">📭</p>
+        <p>עוד לא שלחת בקשות.</p>
+        <a href="/listings" class="btn btn--primary" style="margin-top:var(--sp-lg);display:inline-block;">עברי ללוח הדירות</a>
+      </div>
+    <% } %>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2026 Roomies — כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>

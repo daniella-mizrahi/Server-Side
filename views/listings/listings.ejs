@@ -1,0 +1,54 @@
+<%- include('../includes/head.ejs') %>
+
+<title>Roomies | לוח דירות</title>
+<link rel="stylesheet" href="/css/listings.css">
+</head>
+<body>
+
+<%- include('../includes/menu.ejs') %>
+
+<main>
+  <section class="listings-page">
+    <header class="listings-page__header">
+      <h1>לוח דירות</h1>
+      <p class="section-subtitle">דירות זמינות להשכרה עם שותפות</p>
+    </header>
+
+    <% if (listings && listings.length > 0) { %>
+      <div class="listings-grid">
+        <% listings.forEach(function(listing) { %>
+          <article class="listing-card">
+            <div class="listing-card__body">
+              <h3 class="listing-card__city"><%= listing.city %></h3>
+              <p class="listing-card__address"><%= listing.address %></p>
+              <div class="listing-card__details">
+                <span class="badge"><%= listing.room_count %> חדרים</span>
+                <span class="badge"><%= listing.roommate_gender_pref === 'female_only' ? 'בנות בלבד' : listing.roommate_gender_pref === 'male_only' ? 'בנים בלבד' : 'לכולם' %></span>
+                <% if (listing.pet_friendly) { %>
+                  <span class="badge badge--accent">ידידותי לחיות</span>
+                <% } %>
+              </div>
+              <p class="listing-card__desc"><%= listing.description.substring(0, 100) %><%= listing.description.length > 100 ? '...' : '' %></p>
+            </div>
+            <div class="listing-card__footer">
+              <span class="listing-card__price">₪<%= Number(listing.total_rent).toLocaleString() %> / חודש</span>
+              <span class="listing-card__date">כניסה: <%= new Date(listing.available_from).toLocaleDateString('he-IL') %></span>
+            </div>
+            <a href="/listings/<%= listing.listing_id %>" class="listing-card__link">צפי בפרטים</a>
+          </article>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p style="text-align:center; color:var(--clr-text-muted); padding:var(--sp-2xl);">
+        אין דירות זמינות כרגע. <a href="/new-listing">פרסמי את הדירה שלך!</a>
+      </p>
+    <% } %>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2026 Roomies — כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>

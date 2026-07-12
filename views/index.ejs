@@ -1,0 +1,70 @@
+<%- include('includes/head.ejs') %>
+
+<title>Roomies | דף הבית</title>
+<link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+
+<%- include('includes/menu.ejs') %>
+
+<main>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__content">
+      <h1 id="hero-heading" class="hero__title">מצאי שותפה לדירה</h1>
+      <p class="hero__subtitle">הפלטפורמה המובילה למציאת שותפות דירה בישראל</p>
+      <div class="hero__actions">
+        <a href="/listings" class="btn btn--primary">צפי בדירות</a>
+        <a href="/new-listing" class="btn btn--outline">+ פרסמי דירה</a>
+      </div>
+    </div>
+    <div class="hero__image">
+      <img src="/Images/pic1.jpg" alt="שותפות לדירה" loading="lazy">
+    </div>
+  </section>
+
+  <section class="how-it-works" aria-labelledby="how-heading">
+    <h2 id="how-heading" class="section-title">איך זה עובד?</h2>
+    <div class="steps-grid">
+      <article class="step-card">
+        <span class="step-card__number">1</span>
+        <h3>חפשי דירה</h3>
+        <p>עייני בלוח הדירות וסנני לפי עיר ותקציב</p>
+      </article>
+      <article class="step-card">
+        <span class="step-card__number">2</span>
+        <h3>שלחי בקשה</h3>
+        <p>מצאת דירה? שלחי בקשת שותפות עם פרטייך</p>
+      </article>
+      <article class="step-card">
+        <span class="step-card__number">3</span>
+        <h3>הכירי ועברי!</h3>
+        <p>תאמי פגישה עם השותפה ותתחילי חיים חדשים</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="tips-section" aria-labelledby="tips-heading">
+    <h2 id="tips-heading" class="section-title">טיפים לחיפוש שותפה</h2>
+    <div class="tips-grid">
+      <article class="tip-card">
+        <h3>הגדירי תקציב</h3>
+        <p>קבעי מראש כמה את מוכנה לשלם לחודש כולל חשבונות</p>
+      </article>
+      <article class="tip-card">
+        <h3>שאלי שאלות</h3>
+        <p>בררי על אורח חיים, שעות שקט, חיות מחמד ועישון</p>
+      </article>
+      <article class="tip-card">
+        <h3>בקרי בדירה</h3>
+        <p>תמיד בואי לראות את הדירה לפני שמתחייבים</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2026 Roomies — כל הזכויות שמורות</p>
+</footer>
+
+</body>
+</html>
