@@ -1,0 +1,287 @@
+/* ══════════════════════════════════════════════════════════════════
+   listings.css — Listings Grid + Listing Detail
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Listings Page ────────────────────────────────────────────────── */
+.listings-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-xl);
+}
+
+.listings-page__header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+
+.listings-page__header h1 {
+  font-size: var(--fs-3xl);
+  background: linear-gradient(135deg, var(--clr-primary-light), var(--clr-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--sp-xs);
+}
+
+.section-subtitle {
+  color: var(--clr-text-muted);
+  font-size: var(--fs-lg);
+}
+
+/* ── Listings Grid ────────────────────────────────────────────────── */
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--sp-xl);
+}
+
+/* ── Listing Card ─────────────────────────────────────────────────── */
+.listing-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.listing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(108, 99, 255, 0.18);
+  border-color: var(--clr-primary);
+}
+
+.listing-card__body {
+  padding: var(--sp-xl);
+  flex: 1;
+}
+
+.listing-card__city {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  margin-bottom: var(--sp-xs);
+  color: var(--clr-text);
+}
+
+.listing-card__address {
+  color: var(--clr-text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--sp-md);
+}
+
+.listing-card__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-md);
+}
+
+.listing-card__desc {
+  color: var(--clr-text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.listing-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-md) var(--sp-xl);
+  background: var(--clr-surface-2);
+  border-top: 1px solid var(--clr-border);
+}
+
+.listing-card__price {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--clr-primary-light);
+}
+
+.listing-card__date {
+  font-size: var(--fs-xs);
+  color: var(--clr-text-muted);
+}
+
+.listing-card__link {
+  display: block;
+  text-align: center;
+  padding: var(--sp-md);
+  background: var(--clr-primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.listing-card__link:hover {
+  background: var(--clr-primary-dark);
+}
+
+/* ── Detail Page ──────────────────────────────────────────────────── */
+.detail-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-xl);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  color: var(--clr-primary-light);
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: var(--sp-xl);
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--clr-primary);
+}
+
+.detail-content {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+}
+
+.detail-info {
+  padding: var(--sp-2xl);
+}
+
+.detail-info h1 {
+  font-size: var(--fs-3xl);
+  margin-bottom: var(--sp-xs);
+}
+
+.detail-info h2 {
+  font-size: var(--fs-lg);
+  margin-top: var(--sp-xl);
+  margin-bottom: var(--sp-sm);
+  color: var(--clr-primary-light);
+}
+
+.detail-address {
+  color: var(--clr-text-muted);
+  font-size: var(--fs-md);
+  margin-bottom: var(--sp-lg);
+}
+
+.detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-lg);
+}
+
+.detail-desc {
+  color: var(--clr-text-muted);
+  line-height: 1.7;
+  margin-bottom: var(--sp-lg);
+}
+
+.detail-meta {
+  color: var(--clr-text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--sp-sm);
+}
+
+.detail-meta strong {
+  color: var(--clr-text);
+}
+
+/* ── Price Card (sidebar) ─────────────────────────────────────────── */
+.price-card {
+  background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+  padding: var(--sp-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.price-card__label {
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  margin-bottom: var(--sp-sm);
+}
+
+.price-card__amount {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--sp-xs);
+}
+
+.price-card__per {
+  font-size: var(--fs-sm);
+  opacity: 0.75;
+}
+
+/* ── Requests Section ─────────────────────────────────────────────── */
+.requests-section {
+  margin-top: var(--sp-2xl);
+}
+
+.requests-section h2 {
+  font-size: var(--fs-xl);
+  margin-bottom: var(--sp-lg);
+  color: var(--clr-primary-light);
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.request-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-lg);
+  transition: border-color 0.2s;
+}
+
+.request-card:hover {
+  border-color: var(--clr-primary);
+}
+
+.request-card p {
+  margin-bottom: var(--sp-sm);
+  line-height: 1.6;
+}
+
+.request-card p:last-child {
+  margin-bottom: 0;
+}
+
+.request-meta {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+}
+
+.status-pending  { color: var(--clr-warning); font-weight: 600; }
+.status-approved { color: var(--clr-success); font-weight: 600; }
+.status-rejected { color: var(--clr-error);   font-weight: 600; }
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .listings-grid { grid-template-columns: 1fr; }
+  .detail-grid   { grid-template-columns: 1fr; }
+  .price-card    { padding: var(--sp-xl); }
+}

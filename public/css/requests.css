@@ -1,0 +1,189 @@
+/* ══════════════════════════════════════════════════════════════════
+   requests.css — My Requests Page
+   ══════════════════════════════════════════════════════════════════ */
+
+.requests-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-xl);
+}
+
+.requests-page__header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+
+.requests-page__header h1 {
+  font-size: var(--fs-3xl);
+  background: linear-gradient(135deg, var(--clr-primary-light), var(--clr-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--sp-xs);
+}
+
+/* ── Requests Grid ────────────────────────────────────────────────── */
+.requests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--sp-xl);
+}
+
+/* ── Request Card ─────────────────────────────────────────────────── */
+.request-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.request-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(108, 99, 255, 0.15);
+  border-color: var(--clr-primary);
+}
+
+.request-card__header {
+  padding: var(--sp-lg) var(--sp-xl);
+  background: var(--clr-surface-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-sm);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.request-card__city {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--clr-text);
+  margin: 0;
+}
+
+.request-card__address {
+  color: var(--clr-text-muted);
+  font-size: var(--fs-sm);
+  flex: 1;
+}
+
+.request-card__status {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.request-card__status.status-pending {
+  background: rgba(255, 193, 7, 0.15);
+  color: var(--clr-warning);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.request-card__status.status-approved {
+  background: rgba(0, 184, 148, 0.15);
+  color: var(--clr-success);
+  border: 1px solid rgba(0, 184, 148, 0.3);
+}
+
+.request-card__status.status-rejected {
+  background: rgba(255, 82, 82, 0.12);
+  color: var(--clr-error);
+  border: 1px solid rgba(255, 82, 82, 0.3);
+}
+
+.request-card__body {
+  padding: var(--sp-xl);
+  flex: 1;
+}
+
+.request-card__message {
+  color: var(--clr-text);
+  line-height: 1.7;
+  margin-bottom: var(--sp-md);
+}
+
+.request-card__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+}
+
+.request-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-md) var(--sp-xl);
+  border-top: 1px solid var(--clr-border);
+}
+
+.request-card__date {
+  font-size: var(--fs-xs);
+  color: var(--clr-text-muted);
+}
+
+.request-card__link {
+  color: var(--clr-primary-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  transition: color 0.2s;
+}
+
+.request-card__link:hover {
+  color: var(--clr-primary);
+}
+
+/* ── Request Form (on listing detail) ─────────────────────────────── */
+.request-form-section {
+  margin-top: var(--sp-2xl);
+  border-top: 2px solid var(--clr-primary);
+  padding-top: var(--sp-2xl);
+}
+
+.request-form-section h2 {
+  text-align: center;
+  font-size: var(--fs-xl);
+  margin-bottom: var(--sp-xs);
+}
+
+.request-form-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-2xl);
+  margin-top: var(--sp-xl);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Empty State ──────────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: var(--sp-3xl);
+  color: var(--clr-text-muted);
+}
+
+.empty-state__icon {
+  font-size: 4rem;
+  margin-bottom: var(--sp-md);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .requests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .request-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .request-form-card {
+    padding: var(--sp-lg);
+  }
+}

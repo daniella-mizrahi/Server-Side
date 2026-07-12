@@ -1,0 +1,63 @@
+/* ══════════════════════════════════════════════════════════════════
+   new-listing.css — New Listing Form
+   ══════════════════════════════════════════════════════════════════ */
+
+.new-listing-page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-xl);
+}
+
+.new-listing-page__header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+}
+
+.new-listing-page__header h1 {
+  font-size: var(--fs-3xl);
+  background: linear-gradient(135deg, var(--clr-primary-light), var(--clr-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--sp-xs);
+}
+
+/* ── Form Card ────────────────────────────────────────────────────── */
+.form-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-2xl);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Form Actions ─────────────────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-md);
+  margin-top: var(--sp-xl);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .new-listing-page {
+    padding: var(--sp-lg) var(--sp-md);
+  }
+
+  .form-card {
+    padding: var(--sp-lg);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
